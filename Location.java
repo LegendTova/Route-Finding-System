@@ -20,6 +20,6 @@ public abstract class Location{
 	
 	public String shortestKmRouteTo(Location loc, String day) {
 		
-		return "";
+		return "";//sadsa
 	}
 }
