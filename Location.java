@@ -1,5 +1,25 @@
+import java.util.ArrayList;
 
-public class Location {
+public abstract class Location{
 	String name = "";
-	Leg connectingLegs = new Leg();
+	static ArrayList connectingLegs;
+
+	public void addConnection (Leg connection) {
+		
+	}
+	
+	public String cheapestRoute(Location loc, String day) {
+		
+		return "";
+	}
+	
+	public String minStepsRouteTo(Location loc, String day) {
+		
+		return "";
+	}
+	
+	public String shortestKmRouteTo(Location loc, String day) {
+		
+		return "";
+	}
 }
