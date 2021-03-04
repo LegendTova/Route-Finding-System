@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public abstract class Location{
@@ -5,7 +6,7 @@ public abstract class Location{
 	static ArrayList connectingLegs;
 
 	public void addConnection (Leg connection) {
-		
+		connectingLegs.add(connection);
 	}
 	
 	public String cheapestRoute(Location loc, String day) {
@@ -20,6 +21,6 @@ public abstract class Location{
 	
 	public String shortestKmRouteTo(Location loc, String day) {
 		
-		return "";//sadsa
+		return "";
 	}
 }
