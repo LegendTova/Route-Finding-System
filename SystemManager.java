@@ -12,6 +12,7 @@ public class SystemManager {
 		for(int i = 0;i < legs.size();i++) {
 			System.out.println(printLeg(legs.get(i)));
 		}
+		System.out.println("\n");
 	}
 	public void addLocation(Location l) {
 		locations.add(l);
