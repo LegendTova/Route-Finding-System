@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public abstract class Location{
 	String name = "";
-	static ArrayList connectingLegs;
+	ArrayList connectingLegs;
 	
 	Location(String n){
 		name = n;
