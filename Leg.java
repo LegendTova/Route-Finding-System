@@ -11,6 +11,6 @@ public class Leg {
 		destination = d;
 		distance = dKm;
 		costPerKm = costKm;
-		daysAvailable.add(days.split());
+		daysAvailable.addAll(days.split());
 	}
 }
