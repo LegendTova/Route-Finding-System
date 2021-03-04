@@ -7,6 +7,6 @@ public class Leg {
 	double costPerKm;
 	
 	public Leg(Location origin, Location distance, int distanceInKm, String days, double costPerKm) {
-		
+		//dfefefef
 	}
 }
