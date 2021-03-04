@@ -6,7 +6,11 @@ public class Leg {
 	int distance;
 	double costPerKm;
 	
-	public Leg(Location origin, Location distance, int distanceInKm, String days, double costPerKm) {
-		//dfefefef
+	public Leg(Location o, Location d, int dKm, String days, double costKm) {
+		origin = o;
+		destination = d;
+		distance = dKm;
+		costPerKm = costKm;
+		daysAvailable.add(days.split());
 	}
 }
