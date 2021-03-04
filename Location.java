@@ -4,6 +4,10 @@ import java.util.ArrayList;
 public abstract class Location{
 	String name = "";
 	static ArrayList connectingLegs;
+	
+	Location(String n){
+		name = n;
+	}
 
 	public void addConnection (Leg connection) {
 		connectingLegs.add(connection);
