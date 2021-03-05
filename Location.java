@@ -5,6 +5,7 @@ public abstract class Location{
 	String name = "";
 	ArrayList connectingLegs;
 	
+	
 	Location(String n){
 		name = n;
 	}
@@ -15,16 +16,16 @@ public abstract class Location{
 	
 	public String cheapestRoute(Location loc, String day) {
 		
-		return "";
+		return null;
 	}
 	
 	public String minStepsRouteTo(Location loc, String day) {
 		
-		return "";
+		return null;
 	}
 	
 	public String shortestKmRouteTo(Location loc, String day) {
 		
-		return "";
+		return null;
 	}
 }

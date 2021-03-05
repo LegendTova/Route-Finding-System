@@ -28,13 +28,28 @@ public class SystemManager {
 		}
 		return null;
 	}
-	public static Route findCheapestRoute() {
+	public static Route findCheapestRoute(Location origin, Location destination, String day) {
+		double [] [] costPerStep = new double [locations.size()] [locations.size()];
+		
+		for(int i = 0;i < costPerStep.length;i++) {
+			for(int j = 0;j < costPerStep[i].length;j++) {
+				if(j == i) {
+					costPerStep[i][j] = 0;
+				}
+				for(int k = 0;k < legs.size();k++) {
+					/*if(legs[k]) {
+						
+					}*/
+				}
+			}
+		}
+		
 		return null;
 	}
-	public static Route findMinStepsRoute() {
+	public static Route findMinStepsRoute(Location origin, Location destination, String day) {
 		return null;
 	}
-	public static Route findMinKmRoute() {
+	public static Route findMinKmRoute(Location origin, Location destination, String day) {
 		return null;
 	}
 	public static String printLocation(Location l) {

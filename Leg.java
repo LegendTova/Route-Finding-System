@@ -13,4 +13,20 @@ public class Leg {
 		costPerKm = costKm;
 		daysAvailable.addAll(Arrays.asList(days.split("")));
 	}
+	
+	public Location getOrigin() {
+		return origin;
+	}
+	
+	public Location getDestination() {
+		return destination;
+	}
+	
+	public ArrayList<String> getDays() {
+		return daysAvailable;
+	}
+	
+	public double getCost() {
+		return costPerKm;
+	}
 }
