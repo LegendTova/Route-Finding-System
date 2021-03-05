@@ -26,6 +26,10 @@ public class Leg {
 		return daysAvailable;
 	}
 	
+	public double getDistance() {
+		return distance;
+	}
+	
 	public double getCost() {
 		return costPerKm;
 	}

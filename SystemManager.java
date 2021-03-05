@@ -37,9 +37,10 @@ public class SystemManager {
 					costPerStep[i][j] = 0;
 				}
 				for(int k = 0;k < legs.size();k++) {
-					/*if(legs[k]) {
-						
-					}*/
+					if((legs.get(k).getOrigin()).equals(locations.get(i)) && (legs.get(k).getDestination()).equals(locations.get(j))) {
+						costPerStep[i][j] = legs.get(k).getDistance() * legs.get(k).getCost();
+						costPerStep[j][i] = legs.get(k).getDistance() * legs.get(k).getCost();
+					}
 				}
 			}
 		}
