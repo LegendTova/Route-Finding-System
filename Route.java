@@ -1,3 +1,4 @@
+
 public class Route {
 	Location origin;
 	Location destination;
@@ -33,7 +34,7 @@ public class Route {
 	public String toString() {
 		String legs = "";
 		for(int i = 0;i < (int) steps;i++) {
-			legs += "Origin: " + origin + "Destination: " + destination;
+			legs += "Origin: " + origin + "Destination: " + destination + "\n";
 		}
 		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
 				"Steps: " + steps + "Distance: " + distance + "Cost: " + cost
