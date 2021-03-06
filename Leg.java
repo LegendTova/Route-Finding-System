@@ -2,7 +2,7 @@ import java.util.*;
 public class Leg {
 	Location origin;
 	Location destination;
-	ArrayList<String> daysAvailable = new ArrayList<String>();
+	String daysAvailable = "";
 	int distance;
 	double costPerKm;
 	
@@ -11,7 +11,7 @@ public class Leg {
 		destination = d;
 		distance = dKm;
 		costPerKm = costKm;
-		daysAvailable.addAll(Arrays.asList(days.split("")));
+		daysAvailable = days;
 	}
 	
 	public Location getOrigin() {
@@ -22,7 +22,7 @@ public class Leg {
 		return destination;
 	}
 	
-	public ArrayList<String> getDays() {
+	public String getDays() {
 		return daysAvailable;
 	}
 	
