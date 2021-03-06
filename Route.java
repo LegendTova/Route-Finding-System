@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Route {
 	Location origin;
@@ -5,6 +6,7 @@ public class Route {
 	double cost = 0;
 	double distance = 0;
 	double steps = 0;
+	public static ArrayList<Leg> listOfLegs = new ArrayList<Leg>();
 
 	
 	Route(Location o, Location des, double c, double d, double s){
@@ -27,14 +29,20 @@ public class Route {
 		return steps;
 		
 	}
+	public Leg getLeg(int i) {
+		return listOfLegs.get(i);
+	}
 	
 	public void addLeg(Leg added){
-		
+		steps++;
+		distance += added.getDistance();
+		cost += added.getCost();
+		listOfLegs.add(added);
 	}
 	public String toString() {
 		String legs = "";
 		for(int i = 0;i < (int) steps;i++) {
-			legs += "Origin: " + origin + "Destination: " + destination + "\n";
+			legs += "Origin: " + listOfLegs.get(i).getOrigin() + "Destination: " + listOfLegs.get(i).getDestination() + "\n";
 		}
 		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
 				"Steps: " + steps + "Distance: " + distance + "Cost: " + cost
