@@ -10,6 +10,8 @@ public class Route {
 
 	
 	Route(Location o, Location des, double c, double d, double s){
+		origin = o;
+		destination = des;
 		cost = c;
 		distance = d;
 		steps = s;
