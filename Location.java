@@ -27,14 +27,12 @@ public abstract class Location{
 				for(int k = 0;k < SystemManager.legs.size();k++) {
 					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
 						costPerStep[i][j] = SystemManager.legs.get(k).getDistance() * SystemManager.legs.get(k).getCost();
-						costPerStep[j][i] = SystemManager.legs.get(k).getDistance() * SystemManager.legs.get(k).getCost();
 						hasLeg = true;
 					}
 				}
 				
 				if(hasLeg == false) {
 					costPerStep[i][j] = INF;
-					costPerStep[j][i] = INF;
 				}
 			}
 		}
@@ -55,14 +53,12 @@ public abstract class Location{
 				for(int k = 0;k < SystemManager.legs.size();k++) {
 					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
 						minStep[i][j] = 1;
-						minStep[j][i] = 1;
 						hasLeg = true;
 					}
 				}
 				
 				if(hasLeg == false) {
 					minStep[i][j] = INF;
-					minStep[j][i] = INF;
 				}
 			}
 		}
@@ -82,14 +78,12 @@ public abstract class Location{
 				for(int k = 0;k < SystemManager.legs.size();k++) {
 					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
 						shortestDistance[i][j] = SystemManager.legs.get(k).getDistance();
-						shortestDistance[j][i] = SystemManager.legs.get(k).getDistance();
 						hasLeg = true;
 					}
 				}
 				
 				if(hasLeg == false) {
 					shortestDistance[i][j] = INF;
-					shortestDistance[j][i] = INF;
 				}
 			}
 		}
