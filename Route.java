@@ -1,10 +1,10 @@
-
 public class Route {
 	Location origin;
 	Location destination;
 	double cost = 0;
 	double distance = 0;
 	double steps = 0;
+
 	
 	Route(Location o, Location des, double c, double d, double s){
 		cost = c;
@@ -30,8 +30,16 @@ public class Route {
 	public void addLeg(Leg added){
 		
 	}
-	
 	public String toString() {
-		return "sadsad";
+		String legs = "";
+		for(int i = 0;i < (int) steps;i++) {
+			legs += "Origin: " + origin + "Destination: " + destination;
+		}
+		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
+				"Steps: " + steps + "Distance: " + distance + "Cost: " + cost
+				+ "Route Start:"
+				+ legs
+				+ "Route End."
+				+ ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 	}
 }
