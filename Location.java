@@ -28,7 +28,7 @@ public abstract class Location{
 		int end = SystemManager.locations.indexOf(loc);
 		
 		if(costPerStep[start][end] != INF) {
-			Route cheap = new Route(costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
+			Route cheap = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
 			
 			return cheap;
 		}
@@ -50,7 +50,7 @@ public abstract class Location{
 		int end = SystemManager.locations.indexOf(loc);
 		
 		if(minStep[start][end] != INF) {
-			Route minStepRoute = new Route(costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
+			Route minStepRoute = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
 			
 			return minStepRoute;
 		}
@@ -72,7 +72,7 @@ public abstract class Location{
 		int end = SystemManager.locations.indexOf(loc);
 		
 		if(costPerStep[start][end] != INF) {
-			Route shortRoute = new Route(costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
+			Route shortRoute = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
 			
 			return shortRoute;
 		}

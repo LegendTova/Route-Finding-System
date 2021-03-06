@@ -1,10 +1,12 @@
 
 public class Route {
+	Location origin;
+	Location destination;
 	double cost = 0;
 	double distance = 0;
 	double steps = 0;
 	
-	Route(double c, double d, double s){
+	Route(Location o, Location des, double c, double d, double s){
 		cost = c;
 		distance = d;
 		steps = s;
