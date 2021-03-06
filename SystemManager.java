@@ -30,14 +30,33 @@ public class SystemManager {
 	}
 	public static Route findCheapestRoute(Location origin, Location destination, String day) {
 		
+		Route cheapestRoute = origin.cheapestRoute(destination, day);
 		
-		return null;
+		if(cheapestRoute.equals(null)) {
+			return null;
+		}
+		
+		return cheapestRoute;
 	}
 	public static Route findMinStepsRoute(Location origin, Location destination, String day) {
-		return null;
+		
+		Route minStepRoute = origin.cheapestRoute(destination, day);
+		
+		if(minStepRoute.equals(null)) {
+			return null;
+		}
+		
+		return minStepRoute;
 	}
 	public static Route findMinKmRoute(Location origin, Location destination, String day) {
-		return null;
+		
+		Route distanceRoute = origin.cheapestRoute(destination, day);
+		
+		if(distanceRoute.equals(null)) {
+			return null;
+		}
+		
+		return distanceRoute;
 	}
 	public static String printLocation(Location l) {
 		return l.name;
