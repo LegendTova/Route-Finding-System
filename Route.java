@@ -43,14 +43,14 @@ public class Route {
 	}
 	public String toString() {
 		String legs = "";
-		for(int i = 0;i < (int) steps;i++) {
+		/*for(int i = 0;i < (int) steps;i++) {
 			legs += "Origin: " + listOfLegs.get(i).getOrigin() + "Destination: " + listOfLegs.get(i).getDestination() + "\n";
-		}
+		}*/
 		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
-				"Steps: " + steps + "Distance: " + distance + "Cost: " + cost
-				+ "Route Start:"
+				"Steps: " + steps + " Distance: " + distance + " Cost: " + cost
+				+ "\nRoute Start:"
 				+ legs
-				+ "Route End."
-				+ ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+				+ "\nRoute End."
+				+ "\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 	}
 }

@@ -32,29 +32,17 @@ public class SystemManager {
 		
 		Route cheapestRoute = origin.cheapestRoute(destination, day);
 		
-		if(cheapestRoute.equals(null)) {
-			return null;
-		}
-		
 		return cheapestRoute;
 	}
 	public static Route findMinStepsRoute(Location origin, Location destination, String day) {
 		
-		Route minStepRoute = origin.cheapestRoute(destination, day);
-		
-		if(minStepRoute.equals(null)) {
-			return null;
-		}
+		Route minStepRoute = origin.minStepsRouteTo(destination, day); 
 		
 		return minStepRoute;
 	}
-	public static Route findMinKmRoute(Location origin, Location destination, String day) {
+	public static Route findShortestKmRoute(Location origin, Location destination, String day) {
 		
-		Route distanceRoute = origin.cheapestRoute(destination, day);
-		
-		if(distanceRoute.equals(null)) {
-			return null;
-		}
+		Route distanceRoute = origin.shortestKmRouteTo(destination, day);
 		
 		return distanceRoute;
 	}
