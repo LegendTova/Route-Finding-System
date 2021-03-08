@@ -34,16 +34,18 @@ public class Route {
 	}//getLeg
 	
 	public void addLeg(Leg added){
+		System.out.println("addLeg called");
 		steps++;
 		distance += added.getDistance();
 		cost += added.getCost();
 		listOfLegs.add(added);
 	}//addLeg
 	public String toString() {
+		
 		String legs = "";
-		/*for(int i = 0;i < (int) steps;i++) {
-			legs += "Origin: " + listOfLegs.get(i).getOrigin() + "Destination: " + listOfLegs.get(i).getDestination() + "\n";
-		}*/
+		for(int i = 0;i < (int) steps;i++) {
+			legs += "\nOrigin: " + SystemManager.legs.get(i).getOrigin() + " Destination: " + SystemManager.legs.get(i).getDestination() + "\n";
+		}
 		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
 				"Steps: " + steps + " Distance: " + distance + " Cost: " + cost
 				+ "\nRoute Start:"
