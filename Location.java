@@ -188,6 +188,11 @@ public abstract class Location{
         }
     }*/
         
+ //   for(int count1 = 0;count1 < days.length;count1++) {
+ //   	for(int count2 = 0;count2 < days[count1].length;count2++) {
+  //  		System.out.println(days[count1][count2] + "days");
+  //  	}//inner for loop
+  //  }//outer for loop
         
 	// Adding vertices individually
 		for (k = 0; k < V; k++) {
@@ -202,4 +207,7 @@ public abstract class Location{
 			}//inner for loop
 		}//outer for loop
 	}//floydWarshall
+	public String toString() {
+		return name;
+	}//toString
 }//Location
