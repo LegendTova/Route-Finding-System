@@ -1,8 +1,7 @@
-
 public class testDriver {
 
 	public static void main (String [] args) {
-	    SystemManager sm = new SystemManager();
+		SystemManager sm = new SystemManager();
 	    Location b1 = new BikeDeliveryLocation("BikeDepot1");
 	    Location b2 = new BikeDeliveryLocation("BikeDepot2");
 	    Location b3 = new BikeDeliveryLocation("BikeDepot3");
@@ -47,13 +46,12 @@ public class testDriver {
 	    System.out.println("\n\nCheapest Route: ");
 	    System.out.println(rA);
 
-	    Route rB = sm.findShortestKmRoute(sm.findLocation("TRUCK001"), sm.findLocation("TRUCK004"), "M");
+	    Route rB = sm.findMinKmRoute(sm.findLocation("TRUCK001"), sm.findLocation("TRUCK004"), "M");
 	    System.out.println("\n\nShortest Route:\n " + rB);
 
 	    System.out.println("");
 
 	    
 
-	  } // main
-
-}
+	} // main
+}//testDriver
