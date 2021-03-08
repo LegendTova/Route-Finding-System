@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Route {
+	//instance variables
 	Location origin;
 	Location destination;
 	double cost = 0;
@@ -15,32 +16,29 @@ public class Route {
 		cost = c;
 		distance = d;
 		steps = s;
-	}
+	}//Route constructor
 	
 	public double totalCost(){
 		return cost;
-		
-	}
+	}//totalCost
 	
 	public double totalDistance(){
 		return distance;
-		
-	}
+	}//totalDistance
 	
 	public double totalSteps(){
 		return steps;
-		
-	}
+	}//totalSteps
 	public Leg getLeg(int i) {
 		return listOfLegs.get(i);
-	}
+	}//getLeg
 	
 	public void addLeg(Leg added){
 		steps++;
 		distance += added.getDistance();
 		cost += added.getCost();
 		listOfLegs.add(added);
-	}
+	}//addLeg
 	public String toString() {
 		String legs = "";
 		/*for(int i = 0;i < (int) steps;i++) {
@@ -52,5 +50,5 @@ public class Route {
 				+ legs
 				+ "\nRoute End."
 				+ "\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
-	}
-}
+	}//toString
+}//Route
