@@ -46,7 +46,7 @@ public class Route {
 		for(int i = 0;i < (int) steps;i++) {
 			legs += "\nOrigin: " + SystemManager.legs.get(i).getOrigin() + " Destination: " + SystemManager.legs.get(i).getDestination();
 		}
-		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
+		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" +
 				"Steps: " + steps + " Distance: " + distance + " Cost: " + cost
 				+ "\nRoute Start:"
 				+ legs
