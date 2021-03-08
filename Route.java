@@ -44,7 +44,7 @@ public class Route {
 		
 		String legs = "";
 		for(int i = 0;i < (int) steps;i++) {
-			legs += "\nOrigin: " + SystemManager.legs.get(i).getOrigin() + " Destination: " + SystemManager.legs.get(i).getDestination() + "\n";
+			legs += "\nOrigin: " + SystemManager.legs.get(i).getOrigin() + " Destination: " + SystemManager.legs.get(i).getDestination();
 		}
 		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +
 				"Steps: " + steps + " Distance: " + distance + " Cost: " + cost
