@@ -15,6 +15,7 @@ public abstract class Location{
 	}//addConnection
 	
 	public Route cheapestRoute(Location loc, String day) {
+		Route cheap =  new Route(this, loc, 0, 0, 0);
 		double [] [] costPerStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] shortestDistance = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] minStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
@@ -30,15 +31,16 @@ public abstract class Location{
 		
 		
 		if(costPerStep[start][end] != INF) {
-			Route cheap = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
+			cheap = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
 			
 			return cheap;
 		}//if
 		
-		return null;
+		return cheap;
 	}//cheapestRoute
 	
 	public Route minStepsRouteTo(Location loc, String day) {
+		Route minStepRoute = new Route(this, loc, 0, 0, 0);
 		double [] [] minStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] shortestDistance = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] costPerStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
@@ -53,15 +55,16 @@ public abstract class Location{
 		int end = SystemManager.locations.indexOf(loc);
 		
 		if(minStep[start][end] != INF) {
-			Route minStepRoute = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
+			minStepRoute = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
 			
 			return minStepRoute;
 		}//if
 		
-		return null;
+		return minStepRoute;
 	}//minStepsRouteTo
 	
 	public Route shortestKmRouteTo(Location loc, String day) {
+		Route shortRoute = new Route(this, loc, 0, 0, 0);
 		double [] [] shortestDistance = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] costPerStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] minStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
@@ -76,12 +79,12 @@ public abstract class Location{
 		int end = SystemManager.locations.indexOf(loc);
 		
 		if(costPerStep[start][end] != INF) {
-			Route shortRoute = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
+			shortRoute = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
 			
 			return shortRoute;
 		}//if
 		
-		return null;
+		return shortRoute;
 	}//shortestKmRouteTo
 	
 	private void makeArrays(double [] [] costPerStep, double [] [] minStep, double [] [] shortestDistance, String [] [] days) {
@@ -148,6 +151,11 @@ public abstract class Location{
 			}//inner for loop
 		}//outer for loop
 		
+		for(int i = 0;i < days.length;i++) {
+			for(int j = 0;j < days.length;j++) {
+		//		System.out.println(days[i][j] + " DAYS");
+			}
+		}
 	}//makeArrays
 	
 	public void setInf(double [][] arr) {
@@ -180,7 +188,12 @@ public abstract class Location{
 		for (k = 0; k < V; k++) {
 			for (i = 0; i < V; i++) {
 				for (j = 0; j < V; j++) {
-					if (matrix[i][k] + matrix[k][j] < matrix[i][j] /*&& getLegDay(i, k).contains(day) && getLegDay(k, j).contains(day)*/) {
+					if(!getLegDay(i, k).contains("")) {
+						//System.out.println(getLegDay(i, k));
+						//System.out.println("TRUE");
+						continue;
+					}
+					if (matrix[i][k] + matrix[k][j] < matrix[i][j] && getLegDay(k, j).contains(day)) {
 						matrix[i][j] = matrix[i][k] + matrix[k][j];
 						arrOne[i][j] = arrOne[i][k] + arrOne[k][j];
 						arrTwo[i][j] = arrTwo[i][k] + arrTwo[k][j];
@@ -193,11 +206,11 @@ public abstract class Location{
 	
 	public String getLegDay(int i, int j) {
 		String days = "";
-		
+		//System.out.println(i + " " + j);
 		for(int k = 0;k < SystemManager.locations.size();k++) {
 			if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
 				days = SystemManager.legs.get(k).getDays();
-				System.out.println(days);
+				//System.out.println(days);
 				return days;
 			}//if 
 		}
@@ -222,4 +235,3 @@ public abstract class Location{
 	}//toString
 
 }//Location
-
