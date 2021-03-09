@@ -1,5 +1,6 @@
 import java.util.*;
 public class Leg {
+	//instance variables
 	Location origin;
 	Location destination;
 	String daysAvailable = "";
@@ -12,25 +13,25 @@ public class Leg {
 		distance = dKm;
 		costPerKm = costKm;
 		daysAvailable = days;
-	}
+	}//Leg constructor
 	
 	public Location getOrigin() {
 		return origin;
-	}
+	}//getOrigin
 	
 	public Location getDestination() {
 		return destination;
-	}
+	}//getDestination
 	
 	public String getDays() {
 		return daysAvailable;
-	}
+	}//getDays
 	
 	public double getDistance() {
 		return distance;
-	}
+	}//getDistance
 	
 	public double getCost() {
 		return costPerKm;
-	}
-}
+	}//getCost
+}//Leg
