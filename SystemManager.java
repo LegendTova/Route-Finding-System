@@ -40,7 +40,7 @@ public class SystemManager {
 	}//findCheapestRoute
 	public static Route findMinStepsRoute(Location origin, Location destination, String day) {
 		
-		Route minStepRoute = origin.cheapestRoute(destination, day);
+		Route minStepRoute = origin.minStepsRouteTo(destination, day);
 		
 		if(minStepRoute.equals(null)) {
 			return null;
@@ -50,7 +50,7 @@ public class SystemManager {
 	}//findMinStepsRoute
 	public static Route findMinKmRoute(Location origin, Location destination, String day) {
 		
-		Route distanceRoute = origin.cheapestRoute(destination, day);
+		Route distanceRoute = origin.shortestKmRouteTo(destination, day);
 		
 		if(distanceRoute.equals(null)) {
 			return null;

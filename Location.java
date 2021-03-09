@@ -22,26 +22,9 @@ public abstract class Location{
 		String [] [] days = new String[SystemManager.locations.size()][SystemManager.locations.size()]; 
 		
 		makeArrays(costPerStep, minStep, shortestDistance, days);
-	
-		for(int i = 0;i < costPerStep.length;i++) {
-			for(int j = 0;j < costPerStep.length;j++) {
-				System.out.print(costPerStep[i][j] + ", ");
-			}//inner for
-			System.out.println();
-		}//outer for
 		
 		floydWarshall(costPerStep, shortestDistance, minStep, path, days, day);
-	
-		System.out.println();
-		System.out.println();
-		
-		for(int i = 0;i < costPerStep.length;i++) {
-			for(int j = 0;j < costPerStep.length;j++) {
-				System.out.print(costPerStep[i][j] + ", ");
-			}//inner for
-			System.out.println();
-		}//outer for
-		
+
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
 		
@@ -198,7 +181,7 @@ public abstract class Location{
 		for (k = 0; k < V; k++) {
 			for (i = 0; i < V; i++) {
 				for (j = 0; j < V; j++) {
-					if (matrix[i][k] + matrix[k][j] < matrix[i][j] /*&& days[i][k].contains(day) && days[k][j].contains(day)*/) {
+					if (matrix[i][k] + matrix[k][j] < matrix[i][j]) {
 						matrix[i][j] = matrix[i][k] + matrix[k][j];
 						arrOne[i][j] = arrOne[i][k] + arrOne[k][j];
 						arrTwo[i][j] = arrTwo[i][k] + arrTwo[k][j];
