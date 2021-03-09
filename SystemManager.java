@@ -32,8 +32,9 @@ public class SystemManager {
 		
 		Route cheapestRoute = origin.cheapestRoute(destination, day);
 		
-		if(cheapestRoute.equals(null)) {
-			return null;
+		if(cheapestRoute.totalCost() == 0 && cheapestRoute.totalDistance() == 0 && cheapestRoute.totalSteps() == 0) {
+			System.out.println("NO ROUTE");
+			//return null;
 		}//if
 		
 		return cheapestRoute;
@@ -42,8 +43,9 @@ public class SystemManager {
 		
 		Route minStepRoute = origin.minStepsRouteTo(destination, day);
 		
-		if(minStepRoute.equals(null)) {
-			return null;
+		if(minStepRoute.totalCost() == 0 && minStepRoute.totalDistance() == 0 && minStepRoute.totalSteps() == 0) {
+			System.out.println("NO ROUTE");
+			//return null;
 		}//if
 		
 		return minStepRoute;
@@ -52,8 +54,9 @@ public class SystemManager {
 		
 		Route distanceRoute = origin.shortestKmRouteTo(destination, day);
 		
-		if(distanceRoute.equals(null)) {
-			return null;
+		if(distanceRoute.totalCost() == 0 && distanceRoute.totalDistance() == 0 && distanceRoute.totalSteps() == 0) {
+			System.out.println("NO ROUTE");
+			//return null;
 		}//if
 		
 		return distanceRoute;
