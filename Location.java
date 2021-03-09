@@ -18,6 +18,7 @@ public abstract class Location{
 		double [] [] costPerStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] shortestDistance = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] minStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
+		int [] [] path = new int [SystemManager.locations.size()] [SystemManager.locations.size()];
 		String [] [] days = new String[SystemManager.locations.size()][SystemManager.locations.size()]; 
 		
 		makeArrays(costPerStep, minStep, shortestDistance, days);
@@ -29,7 +30,7 @@ public abstract class Location{
 			System.out.println();
 		}//outer for
 		
-		floydWarshall(costPerStep, shortestDistance, minStep, days, day);
+		floydWarshall(costPerStep, shortestDistance, minStep, path, days, day);
 	
 		System.out.println();
 		System.out.println();
@@ -58,11 +59,12 @@ public abstract class Location{
 		double [] [] minStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] shortestDistance = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] costPerStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
+		int [] [] path = new int [SystemManager.locations.size()] [SystemManager.locations.size()];
 		String [] [] days = new String[SystemManager.locations.size()][SystemManager.locations.size()];
 		
 		makeArrays(costPerStep, minStep, shortestDistance, days);
 		
-		floydWarshall(minStep, shortestDistance, costPerStep, days, day);
+		floydWarshall(minStep, shortestDistance, costPerStep, path, days, day);
 		
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
@@ -80,11 +82,12 @@ public abstract class Location{
 		double [] [] shortestDistance = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] costPerStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
 		double [] [] minStep = new double [SystemManager.locations.size()] [SystemManager.locations.size()];
+		int [] [] path = new int [SystemManager.locations.size()] [SystemManager.locations.size()];
 		String [] [] days = new String[SystemManager.locations.size()][SystemManager.locations.size()];
 		
 		makeArrays(costPerStep, minStep, shortestDistance, days); 
 		
-		floydWarshall(shortestDistance, costPerStep, minStep, days, day);
+		floydWarshall(shortestDistance, costPerStep, minStep, path, days, day);
 		
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
@@ -173,26 +176,23 @@ public abstract class Location{
 	// Floyd Warshall Algorithm in Java
 
 	// Implementing floyd warshall algorithm
-	public void floydWarshall(double matrix [] [], double [] [] arrOne, double [] [] arrTwo, String days[] [], String day) {
+	public void floydWarshall(double matrix [] [], double [] [] arrOne, double [] [] arrTwo, int [] [] path, String days[] [], String day) {
 		int V = SystemManager.locations.size();
 
     	
     	
     	
-		//double matrix[][] = new double[V][V];
 		int i, j, k;
 
-    /*for (i = 0; i < V; i++) {
-        for (j = 0; j < V; j++) {
-            matrix[i][j] = graph[i][j];
+        for (i = 0; i < V; i++) {
+            for (j = 0; j < V; j++) {
+                path[i][j] = j;
+            }
         }
-    }*/
         
- //   for(int count1 = 0;count1 < days.length;count1++) {
- //   	for(int count2 = 0;count2 < days[count1].length;count2++) {
-  //  		System.out.println(days[count1][count2] + "days");
-  //  	}//inner for loop
-  //  }//outer for loop
+        for (i = 0; i < V; i++) {
+            path[i][i] = i;
+        }
         
 	// Adding vertices individually
 		for (k = 0; k < V; k++) {
@@ -202,11 +202,25 @@ public abstract class Location{
 						matrix[i][j] = matrix[i][k] + matrix[k][j];
 						arrOne[i][j] = arrOne[i][k] + arrOne[k][j];
 						arrTwo[i][j] = arrTwo[i][k] + arrTwo[k][j];
+						path[i][j] = path[i][k];
 					}//if	
 				}//second inner for loop
 			}//inner for loop
 		}//outer for loop
 	}//floydWarshall
+	
+	/*public void path(int u, int v, int [] [] path) {
+	    
+		if(path[u][v] = null) {
+			
+		}
+		
+	    while(u != v) {
+	        u = path[u][v];
+	    }
+	}*/
+	
+	
 	public String toString() {
 		return name;
 	}//toString
