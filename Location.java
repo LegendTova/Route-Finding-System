@@ -210,8 +210,6 @@ public abstract class Location{
 	public String toString() {
 		return name;
 	}//toString
-<<<<<<< HEAD
+
 }//Location
-=======
-}//Location
->>>>>>> branch 'main' of https://github.com/LegendTova/Route-Finding-System
+
