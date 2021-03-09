@@ -142,10 +142,12 @@ public abstract class Location{
 				for(int k = 0;k < SystemManager.legs.size();k++) {
 					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
 						days[i][j] = SystemManager.legs.get(k).getDays();
+						days[j][i] = SystemManager.legs.get(k).getDays();
 					}//if
 				}//second inner for loop
 			}//inner for loop
 		}//outer for loop
+		
 	}//makeArrays
 	
 	public void setInf(double [][] arr) {
@@ -161,9 +163,6 @@ public abstract class Location{
 	// Implementing floyd warshall algorithm
 	public void floydWarshall(double matrix [] [], double [] [] arrOne, double [] [] arrTwo, int [] [] path, String days[] [], String day) {
 		int V = SystemManager.locations.size();
-
-    	
-    	
     	
 		int i, j, k;
 
@@ -181,7 +180,7 @@ public abstract class Location{
 		for (k = 0; k < V; k++) {
 			for (i = 0; i < V; i++) {
 				for (j = 0; j < V; j++) {
-					if (matrix[i][k] + matrix[k][j] < matrix[i][j]) {
+					if (matrix[i][k] + matrix[k][j] < matrix[i][j] /*&& getLegDay(i, k).contains(day) && getLegDay(k, j).contains(day)*/) {
 						matrix[i][j] = matrix[i][k] + matrix[k][j];
 						arrOne[i][j] = arrOne[i][k] + arrOne[k][j];
 						arrTwo[i][j] = arrTwo[i][k] + arrTwo[k][j];
@@ -191,6 +190,20 @@ public abstract class Location{
 			}//inner for loop
 		}//outer for loop
 	}//floydWarshall
+	
+	public String getLegDay(int i, int j) {
+		String days = "";
+		
+		for(int k = 0;k < SystemManager.locations.size();k++) {
+			if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
+				days = SystemManager.legs.get(k).getDays();
+				System.out.println(days);
+				return days;
+			}//if 
+		}
+		
+		return days;
+	}
 	
 	/*public void path(int u, int v, int [] [] path) {
 	    
