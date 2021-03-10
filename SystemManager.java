@@ -50,7 +50,7 @@ public class SystemManager {
 		
 		return minStepRoute;
 	}//findMinStepsRoute
-	public static Route findMinKmRoute(Location origin, Location destination, String day) {
+	public static Route findShortestKmRoute(Location origin, Location destination, String day) {
 		
 		Route distanceRoute = origin.shortestKmRouteTo(destination, day);
 		

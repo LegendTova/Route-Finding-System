@@ -42,9 +42,10 @@ public class Route {
 	}//addLeg
 	public String toString() {
 		
-		String legs = "";
-		for(int i = 0;i < steps;i++) {
-			legs += "\nOrigin: " + SystemManager.legs.get(i).getOrigin() + " Destination: " + SystemManager.legs.get(i).getDestination();
+		String legs = "\nOrigin: " + origin + " Destination: " + SystemManager.locations.get((int)Location.reconstruction.get(0));
+		
+		for(int i = 0;i < steps - 1;i++) {
+			legs += "\nOrigin: " + SystemManager.locations.get((int)Location.reconstruction.get(i)).toString() + " Destination: " + SystemManager.locations.get((int)Location.reconstruction.get(i + 1)).toString();
 		}
 		return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n" +
 				"Steps: " + steps + " Distance: " + distance + " Cost: " + cost

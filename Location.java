@@ -4,6 +4,7 @@ public abstract class Location{
 	//instance variables
 	String name = "";
 	ArrayList connectingLegs;
+	public static ArrayList reconstruction;
 	final static int INF = 9999;
 	
 	Location(String n){
@@ -29,6 +30,7 @@ public abstract class Location{
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
 		
+		path(start, end, path);
 		
 		if(costPerStep[start][end] != INF) {
 			cheap = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
@@ -54,6 +56,8 @@ public abstract class Location{
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
 		
+		path(start, end, path);
+		
 		if(minStep[start][end] != INF) {
 			minStepRoute = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
 			
@@ -77,6 +81,8 @@ public abstract class Location{
 		
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
+		
+		path(start, end, path);
 		
 		if(costPerStep[start][end] != INF) {
 			shortRoute = new Route(this, loc, costPerStep[start][end], shortestDistance[start][end], minStep[start][end]);
@@ -140,14 +146,16 @@ public abstract class Location{
 			}//inner for loop
 		}//outer for loop
 		
-		for(int i = 0;i < days.length;i++) {
-			for(int j = 0;j < days[i].length;j++) {
+		for(int i = 0;i < shortestDistance.length;i++) {
+			for(int j = 0;j < shortestDistance[i].length;j++) {
+				if(j == i) {
+					shortestDistance[i][j] = 0;
+				}//if
 				for(int k = 0;k < SystemManager.legs.size();k++) {
 					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
-						days[i][j] = SystemManager.legs.get(k).getDays();
-						days[j][i] = SystemManager.legs.get(k).getDays();
+						shortestDistance[i][j] = SystemManager.legs.get(k).getDistance();
 					}//if
-				}//second inner for loop
+				}//second inner for loop	
 			}//inner for loop
 		}//outer for loop
 		
@@ -156,6 +164,19 @@ public abstract class Location{
 		//		System.out.println(days[i][j] + " DAYS");
 			}
 		}
+		
+		for(int i = 0;i < days.length;i++) {
+			for(int j = 0;j < days[i].length;j++) {
+				
+				for(int k = 0;k < SystemManager.legs.size();k++) {
+					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
+						days[i][j] = SystemManager.legs.get(k).getDays();
+						days[j][i] = SystemManager.legs.get(k).getDays();
+					}//if
+				}//second inner for loop	
+			}//inner for loop
+		}//outer for loop
+		
 	}//makeArrays
 	
 	public void setInf(double [][] arr) {
@@ -188,12 +209,14 @@ public abstract class Location{
 		for (k = 0; k < V; k++) {
 			for (i = 0; i < V; i++) {
 				for (j = 0; j < V; j++) {
-					if(!getLegDay(i, k).contains("")) {
+					/*if(!getLegDay(i, k).contains("")) {
 						//System.out.println(getLegDay(i, k));
 						//System.out.println("TRUE");
 						continue;
-					}
-					if (matrix[i][k] + matrix[k][j] < matrix[i][j] && getLegDay(k, j).contains(day)) {
+					}*/
+					
+					
+					if (matrix[i][k] + matrix[k][j] < matrix[i][j] && days[i][k].contains(day) && days[k][j].contains(day)) {
 						matrix[i][j] = matrix[i][k] + matrix[k][j];
 						arrOne[i][j] = arrOne[i][k] + arrOne[k][j];
 						arrTwo[i][j] = arrTwo[i][k] + arrTwo[k][j];
@@ -218,17 +241,19 @@ public abstract class Location{
 		return days;
 	}
 	
-	/*public void path(int u, int v, int [] [] path) {
-	    
-		if(path[u][v] = null) {
+	 public void path(int u, int v, int [] [] next) {
+		    
+			reconstruction = new ArrayList();
 			
-		}
-		
-	    while(u != v) {
-	        u = path[u][v];
-	    }
-	}*/
-	
+			if(next[u][v] == INF) {
+			
+			}else{
+				while(u != v) {
+			        u = next[u][v];
+			        reconstruction.add(u);
+			    }
+			}
+	 }
 	
 	public String toString() {
 		return name;
