@@ -14,6 +14,16 @@ public class Leg {
 		costPerKm = costKm;
 		daysAvailable = days;
 		
+		if((origin.type().equals("Airport") && destination.type().equals("BikeDeliveryLocation"))) {
+			System.out.println("Airports Can't Go To Bike Delivery Stations");
+			
+			System.exit(0);
+		}else if((origin.type().equals("BikeDeliveryLocation") && destination.type().equals("Airport"))) {
+			System.out.println("A Bike Delivery Locations Can't Go To Airports");
+			
+			System.exit(0);
+		}
+		
 		origin.addConnection(this);
 	}//Leg constructor
 	
@@ -36,4 +46,9 @@ public class Leg {
 	public double getCost() {
 		return costPerKm;
 	}//getCost
+	
+	public String toString() {
+        return "origin: " + origin.toString() + " destination: " + destination.toString() + "\ndistance: " + distance + "\ncost per km: " + costPerKm;
+	}
+
 }//Leg

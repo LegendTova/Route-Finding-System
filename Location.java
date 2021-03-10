@@ -227,5 +227,7 @@ public abstract class Location{
 	public String toString() {
 		return name;
 	}//toString
+	
+	abstract String type();
 
 }//Location

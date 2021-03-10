@@ -38,7 +38,7 @@ public class testDriver {
 		    sm.addLeg(new TruckLeg(t3, a1, 19, "MTWRFSU"));
 		    
 		    sm.addLeg(new Flight(a1, a2, 221, "MTWRFSU"));
-		   
+		    sm.addLeg(new BikeLeg(b1, a2, 1, "MTWRFSU"));
 		    
 		    // TruckDepot t1 to TruckDepot t4
 		    System.out.println("------- t1 to t4 ----------");
@@ -68,8 +68,6 @@ public class testDriver {
 		    r2 = sm.findShortestKmRoute(sm.findLocation("TRUCK004"), sm.findLocation("BikeDepot1"), "M");
 		    System.out.println("\n\nShortest Route:\n " + r2);
 
-
-	    
 
 	} // main
 }//testDriver
