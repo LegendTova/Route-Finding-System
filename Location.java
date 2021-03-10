@@ -216,7 +216,7 @@ public abstract class Location{
 					}*/
 					
 					
-					if (matrix[i][k] + matrix[k][j] < matrix[i][j] && days[i][k].contains(day) && days[k][j].contains(day)) {
+					if (matrix[i][k] + matrix[k][j] < matrix[i][j] /*&& days[i][k].contains(day) && days[k][j].contains(day)*/) {
 						matrix[i][j] = matrix[i][k] + matrix[k][j];
 						arrOne[i][j] = arrOne[i][k] + arrOne[k][j];
 						arrTwo[i][j] = arrTwo[i][k] + arrTwo[k][j];
