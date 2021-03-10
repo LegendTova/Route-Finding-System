@@ -23,9 +23,9 @@ public abstract class Location{
 		int [] [] path = new int [SystemManager.locations.size()] [SystemManager.locations.size()];
 		String [] [] days = new String[SystemManager.locations.size()][SystemManager.locations.size()]; 
 		
-		makeArrays(costPerStep, minStep, shortestDistance, days);
+		makeArrays(costPerStep, minStep, shortestDistance, day);
 		
-		floydWarshall(costPerStep, shortestDistance, minStep, path, days, day);
+		floydWarshall(costPerStep, shortestDistance, minStep, path);
 
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
@@ -49,9 +49,9 @@ public abstract class Location{
 		int [] [] path = new int [SystemManager.locations.size()] [SystemManager.locations.size()];
 		String [] [] days = new String[SystemManager.locations.size()][SystemManager.locations.size()];
 		
-		makeArrays(costPerStep, minStep, shortestDistance, days);
+		makeArrays(costPerStep, minStep, shortestDistance, day);
 		
-		floydWarshall(minStep, shortestDistance, costPerStep, path, days, day);
+		floydWarshall(minStep, shortestDistance, costPerStep, path);
 		
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
@@ -75,9 +75,9 @@ public abstract class Location{
 		int [] [] path = new int [SystemManager.locations.size()] [SystemManager.locations.size()];
 		String [] [] days = new String[SystemManager.locations.size()][SystemManager.locations.size()];
 		
-		makeArrays(costPerStep, minStep, shortestDistance, days); 
+		makeArrays(costPerStep, minStep, shortestDistance, day); 
 		
-		floydWarshall(shortestDistance, costPerStep, minStep, path, days, day);
+		floydWarshall(shortestDistance, costPerStep, minStep, path);
 		
 		int start = SystemManager.locations.indexOf(this);
 		int end = SystemManager.locations.indexOf(loc);
@@ -93,7 +93,7 @@ public abstract class Location{
 		return shortRoute;
 	}//shortestKmRouteTo
 	
-	private void makeArrays(double [] [] costPerStep, double [] [] minStep, double [] [] shortestDistance, String [] [] days) {
+	private void makeArrays(double [] [] costPerStep, double [] [] minStep, double [] [] shortestDistance, String day) {
 		setInf(costPerStep);
 		setInf(minStep);
 		setInf(shortestDistance);
@@ -104,7 +104,7 @@ public abstract class Location{
 					costPerStep[i][j] = 0;
 				}//if
 				for(int k = 0;k < SystemManager.legs.size();k++) {
-					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
+					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j)) && SystemManager.legs.get(k).getDays().contains(day)) {
 						costPerStep[i][j] = SystemManager.legs.get(k).getDistance() * SystemManager.legs.get(k).getCost();
 					}//if
 				}//second inner for loop
@@ -119,7 +119,7 @@ public abstract class Location{
 					minStep[i][j] = 0;
 				}//if
 				for(int k = 0;k < SystemManager.legs.size();k++) {
-					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
+					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j)) && SystemManager.legs.get(k).getDays().contains(day)) {
 						minStep[i][j] = 1;
 					}//if
 				}//second inner for loop
@@ -133,39 +133,22 @@ public abstract class Location{
 					shortestDistance[i][j] = 0;
 				}//if
 				for(int k = 0;k < SystemManager.legs.size();k++) {
-					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
+					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j)) && SystemManager.legs.get(k).getDays().contains(day)) {
 						shortestDistance[i][j] = SystemManager.legs.get(k).getDistance();
+
 					}//if
 				}//second inner for loop	
 			}//inner for loop
 		}//outer for loop
 		
-		for(int i = 0;i < days.length;i++) {
+		/*for(int i = 0;i < days.length;i++) {
 			for(int j = 0;j < days.length;j++) {
 				days[i][j] = "";
 			}//inner for loop
 		}//outer for loop
+		*/
 		
-		for(int i = 0;i < shortestDistance.length;i++) {
-			for(int j = 0;j < shortestDistance[i].length;j++) {
-				if(j == i) {
-					shortestDistance[i][j] = 0;
-				}//if
-				for(int k = 0;k < SystemManager.legs.size();k++) {
-					if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
-						shortestDistance[i][j] = SystemManager.legs.get(k).getDistance();
-					}//if
-				}//second inner for loop	
-			}//inner for loop
-		}//outer for loop
-		
-		for(int i = 0;i < days.length;i++) {
-			for(int j = 0;j < days.length;j++) {
-		//		System.out.println(days[i][j] + " DAYS");
-			}
-		}
-		
-		for(int i = 0;i < days.length;i++) {
+		/*for(int i = 0;i < days.length;i++) {
 			for(int j = 0;j < days[i].length;j++) {
 				
 				for(int k = 0;k < SystemManager.legs.size();k++) {
@@ -175,7 +158,7 @@ public abstract class Location{
 					}//if
 				}//second inner for loop	
 			}//inner for loop
-		}//outer for loop
+		}//outer for loop*/
 		
 	}//makeArrays
 	
@@ -190,7 +173,7 @@ public abstract class Location{
 	// Floyd Warshall Algorithm in Java
 
 	// Implementing floyd warshall algorithm
-	public void floydWarshall(double matrix [] [], double [] [] arrOne, double [] [] arrTwo, int [] [] path, String days[] [], String day) {
+	public void floydWarshall(double matrix [] [], double [] [] arrOne, double [] [] arrTwo, int [] [] path) {
 		int V = SystemManager.locations.size();
     	
 		int i, j, k;
@@ -209,14 +192,8 @@ public abstract class Location{
 		for (k = 0; k < V; k++) {
 			for (i = 0; i < V; i++) {
 				for (j = 0; j < V; j++) {
-					/*if(!getLegDay(i, k).contains("")) {
-						//System.out.println(getLegDay(i, k));
-						//System.out.println("TRUE");
-						continue;
-					}*/
 					
-					
-					if (matrix[i][k] + matrix[k][j] < matrix[i][j] /*&& days[i][k].contains(day) && days[k][j].contains(day)*/) {
+					if (matrix[i][k] + matrix[k][j] < matrix[i][j]) {
 						matrix[i][j] = matrix[i][k] + matrix[k][j];
 						arrOne[i][j] = arrOne[i][k] + arrOne[k][j];
 						arrTwo[i][j] = arrTwo[i][k] + arrTwo[k][j];
@@ -226,20 +203,6 @@ public abstract class Location{
 			}//inner for loop
 		}//outer for loop
 	}//floydWarshall
-	
-	public String getLegDay(int i, int j) {
-		String days = "";
-		//System.out.println(i + " " + j);
-		for(int k = 0;k < SystemManager.locations.size();k++) {
-			if((SystemManager.legs.get(k).getOrigin()).equals(SystemManager.locations.get(i)) && (SystemManager.legs.get(k).getDestination()).equals(SystemManager.locations.get(j))) {
-				days = SystemManager.legs.get(k).getDays();
-				//System.out.println(days);
-				return days;
-			}//if 
-		}
-		
-		return days;
-	}
 	
 	 public void path(int u, int v, int [] [] next) {
 		    
