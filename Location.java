@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public abstract class Location{
 	//instance variables
 	String name = "";
-	public static ArrayList connectingLegs;
+	ArrayList connectingLegs = new ArrayList();
 	public static ArrayList reconstruction;
 	final static int INF = 9999;
 	
@@ -14,6 +14,12 @@ public abstract class Location{
 	public void addConnection (Leg connection) {
 		connectingLegs.add(connection);
 	}//addConnection
+	
+	public void getConnections() {
+        for(int i = 0;i < connectingLegs.size();i++) {
+            System.out.println(connectingLegs.get(i) + " connection");
+        }
+    }
 	
 	public Route cheapestRoute(Location loc, String day) {
 		Route cheap =  new Route(this, loc, 0, 0, 0);

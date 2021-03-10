@@ -13,6 +13,8 @@ public class Leg {
 		distance = dKm;
 		costPerKm = costKm;
 		daysAvailable = days;
+		
+		origin.addConnection(this);
 	}//Leg constructor
 	
 	public Location getOrigin() {
