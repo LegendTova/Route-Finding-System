@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public abstract class Location{
 	//instance variables
 	String name = "";
-	ArrayList connectingLegs;
+	public static ArrayList connectingLegs;
 	public static ArrayList reconstruction;
 	final static int INF = 9999;
 	

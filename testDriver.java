@@ -67,6 +67,8 @@ public class testDriver {
 		    System.out.println(r1);
 		    r2 = sm.findShortestKmRoute(sm.findLocation("TRUCK004"), sm.findLocation("BikeDepot1"), "M");
 		    System.out.println("\n\nShortest Route:\n " + r2);
+
+
 	    
 
 	} // main
